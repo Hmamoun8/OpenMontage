@@ -1,7 +1,7 @@
 ---
 description: OpenMontage project rules
 globs: ["**/*"]
-alwaysApply: true
+alwaysApply: 
 ---
 
 # OpenMontage
