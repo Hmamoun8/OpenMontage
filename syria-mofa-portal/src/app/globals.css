@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-ui: "Inter Variable", "IBM Plex Sans Arabic";
+  --scale: 1;
+  --bg: #F7F3EA;
+  --ink: #0B1B33;
+  /* Eight-point star (khatam) tessellation, Damascene-style */
+  --pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23C9A14A' stroke-width='1' opacity='.55'%3E%3Cpath d='M40 8l9.4 22.6L72 40l-22.6 9.4L40 72l-9.4-22.6L8 40l22.6-9.4z'/%3E%3Cpath d='M17.4 17.4L40 26.8l22.6-9.4-9.4 22.6 9.4 22.6L40 53.2l-22.6 9.4 9.4-22.6z'/%3E%3Ccircle cx='40' cy='40' r='6'/%3E%3Cpath d='M0 0l8 8M80 0l-8 8M0 80l8-8M80 80l-8-8'/%3E%3C/g%3E%3C/svg%3E");
+}
+html[lang="ar"] { --font-ui: "IBM Plex Sans Arabic", "Inter Variable"; }
+html { font-size: calc(16px * var(--scale)); scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-ui), system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+html[lang="ar"] body { line-height: 1.75; }
+
+/* Accessibility modes */
+html.hc { --bg: #ffffff; --ink: #000000; }
+html.hc body { filter: contrast(1.25); }
+html.hc .glass { background: #fff !important; backdrop-filter: none !important; }
+html.ul a { text-decoration: underline; text-underline-offset: 3px; }
+html.rm *, html.rm *::before, html.rm *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+:focus-visible { outline: 3px solid #C9A14A; outline-offset: 2px; border-radius: 6px; }
+
+@layer components {
+  .container-gov { @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed; }
+  .btn-primary { @apply btn bg-emerald-500 text-white shadow-gov hover:bg-emerald-600; }
+  .btn-gold { @apply btn bg-gold-500 text-navy-900 hover:bg-gold-300 shadow-glow; }
+  .btn-ghost { @apply btn border border-navy-700/15 bg-white/70 text-navy-700 hover:bg-white; }
+  .btn-dark { @apply btn bg-navy-700 text-white hover:bg-navy-500; }
+  .card { @apply rounded-2xl border border-navy-700/10 bg-white shadow-gov; }
+  .input { @apply w-full rounded-xl border border-navy-700/15 bg-white px-4 py-3 text-sm text-navy-700 placeholder:text-navy-300 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20; }
+  .label { @apply mb-1.5 block text-xs font-semibold uppercase tracking-wide text-navy-300; }
+  html[lang="ar"] .label { @apply normal-case tracking-normal text-sm; }
+  .eyebrow { @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[.2em] text-gold-700; }
+  html[lang="ar"] .eyebrow { @apply tracking-normal text-sm; }
+  .h-display { @apply text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl; }
+  .h-section { @apply text-3xl font-bold tracking-tight sm:text-4xl; }
+  .pattern { background-image: var(--pattern); background-size: 80px 80px; }
+  .glass { @apply bg-white/70 backdrop-blur-xl; }
+  .chip { @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold; }
+  .gold-rule { height: 2px; background: linear-gradient(90deg, transparent, #C9A14A, transparent); }
+}
+
+/* Arch silhouette (Umayyad-style horseshoe arch) used as a mask on media */
+.arch { -webkit-mask: radial-gradient(120% 60% at 50% 40%, #000 60%, transparent 61%) top / 100% 50% no-repeat, linear-gradient(#000, #000) bottom / 100% 60% no-repeat; mask: radial-gradient(120% 60% at 50% 40%, #000 60%, transparent 61%) top / 100% 50% no-repeat, linear-gradient(#000, #000) bottom / 100% 60% no-repeat; }
+
+@media print {
+  header, footer, .no-print { display: none !important; }
+  body { background: #fff; }
+  .print-sheet { box-shadow: none !important; border: none !important; }
+}
